@@ -1,0 +1,69 @@
+Act senior full stack flutter developer to Create a Flutter ProfilePage for a bookstore app called Bookly.
+
+Screen name: ProfilePage
+
+🧱 UI Layout:
+
+AppBar:
+
+Back arrow → HomePage()
+
+Center title: “Profile”
+
+Edit icon → EditProfilePage() (placeholder for now)
+
+Top Section (User Info Card):
+
+Circular profile image (placeholder if none)
+
+User full name and email below the image
+
+Optional: “Edit Profile” button under user info
+
+Body Content (List Options):
+
+“My Orders” → navigates to OrdersPage()
+
+“Wishlist” → navigates to WishlistPage()
+
+“Payment Methods” → navigates to PaymentPage()
+
+“Settings” → navigates to SettingsPage()
+
+“Help Center” → navigates to HelpPage()
+
+“Logout” → returns to WelcomePage()
+
+Bottom Section:
+
+App version text (e.g., “Version 1.0.0”)
+
+🎨 Design:
+
+Use Google Fonts (Poppins)
+
+Color palette: navy blue + beige (consistent across all pages)
+
+Use ListTiles with icons and trailing arrows for options
+
+Profile image inside a rounded container with soft shadow
+
+Card-style layout for the top section
+
+Responsive design for mobile/tablet
+
+✨ Animations & UX:
+
+Fade-in animation for profile image and options list
+
+Smooth navigation transitions between pages
+
+Confirmation dialog before logout
+
+⚙️ Functionality:
+
+Display user info dynamically (mock data if backend not connected yet)
+
+Logout clears session and navigates to WelcomePage()
+
+Edit profile button navigates to a new editable form page
