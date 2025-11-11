@@ -8,10 +8,23 @@ class CheckoutService {
   static const String _publishableKey =
       'pk_test_51SRZ3m6Vaw0Zdf4YdO70EI39Q8W8asEZVs29WW9ypt1wZutWU4oUdUeETxeVDp8Fpo3EZSuyXZn1eScUDzMeDyxU00QrOZ4mTm';
 
-  // Platform-aware base URL: Android emulators use 10.0.2.2 to reach host localhost.
-  // For iOS simulator, desktop or running on host use localhost.
-  static String get _baseUrl =>
-      Platform.isAndroid ? 'http://10.0.2.2:3000' : 'http://localhost:3000';
+  // ===== CONFIGURATION =====
+  // For Android Emulator: use 'http://10.0.2.2:3000'
+  // For Physical Device via WiFi: use your PC's IP (e.g., 'http://192.168.1.7:3000')
+  //   - Make sure phone and PC are on same WiFi
+  //   - Make sure Windows Firewall allows port 3000
+  // For Physical Device via USB: use 'http://localhost:3000' and run:
+  //   adb reverse tcp:3000 tcp:3000
+  static const String _androidBackendUrl = 'http://10.0.2.2:3000'; // Change based on deployment method
+  static const String _iosBackendUrl = 'http://localhost:3000';
+
+  // Platform-aware base URL
+  static String get _baseUrl {
+    if (Platform.isAndroid) {
+      return _androidBackendUrl;
+    }
+    return _iosBackendUrl;
+  }
 
   // Increase timeout to 60s to allow backend a bit more time under load.
   static const Duration _timeout = Duration(seconds: 60);
@@ -108,7 +121,7 @@ class CheckoutService {
           print('❌ Attempt $attempt failed: $e');
           if (attempt == maxAttempts) {
             // Re-throw to be caught by outer catch and returned as an error map.
-            throw e;
+            rethrow;
           }
           // Otherwise wait a short moment and retry
           await Future.delayed(const Duration(milliseconds: 500));
